@@ -64,13 +64,14 @@ class editor_texto(tk.Tk):
             messagebox.showinfo('Sin archivo', 'No se seleccionó ningún archivo.')
 
     def _guardar(self):
-        if self.archivo_abierto:
-            with open(self.archivo_abierto, 'w', encoding='utf-8') as file: 
+        if self._archivo_abierto:  # ✅ usa el nombre correcto
+            with open(self._archivo_abierto, 'w', encoding='utf-8') as file: 
                 contenido = self.scroll.get(1.0, tk.END)
                 file.write(contenido)
-            messagebox.showinfo('Guardado', f'Archivo guardado en {self.archivo_abierto}')
+            messagebox.showinfo('Guardado', f'Archivo guardado en {self._archivo_abierto}')
         else:
             self._guardar_como()
+
 
     def _guardar_como(self):
         archivo = filedialog.asksaveasfilename(
